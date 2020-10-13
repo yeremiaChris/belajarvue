@@ -1,49 +1,41 @@
+
 <template>
-  <div id="app">
-    <!-- dolar event itu sama dengan value yang kita emit di header  -->
-    <app-header v-bind:title="title" v-on:ubah="ubah($event)"></app-header>
-    <app-ninjas v-bind:ninjas="ninjas"></app-ninjas>
-    <app-footer v-bind:title="title"></app-footer>
+  <div>
+    <!-- berfungsi untuk menjaga agar tetap aktif formnya jadi data yang kita
+    tulis dan ketika kita pindah form datanya masih ada -->
+    <keep-alive>
+      <component v-bind:is="component"></component>
+    </keep-alive>
+    <button v-on:click="component = 'form-one'">Show form one</button>
+    <button v-on:click="component = 'form-two'">Show form two</button>
   </div>
 </template>
 
 <script>
-// import local
-import Header from "./components/Header";
-import Ninjas from "./components/Ninjas";
-import Footer from "./components/Footer.vue";
+// Imports
+import formOne from "./components/formOne.vue";
+import formTwo from "./components/formTwo.vue";
 export default {
   components: {
-    "app-header": Header,
-    "app-footer": Footer,
-    "app-ninjas": Ninjas,
+    "form-one": formOne,
+    "form-two": formTwo,
   },
   data() {
     return {
-      title: "Ninjas",
-      ninjas: [
-        { name: "Ryu", speciality: "Vue Components", show: false },
-        { name: "Crystal", speciality: "HTML Wizardry", show: false },
-        { name: "Hitoshi", speciality: "Click Events", show: false },
-        { name: "Tango", speciality: "Conditionals", show: false },
-        { name: "Kami", speciality: "Webpack", show: false },
-        { name: "Yoshi", speciality: "Data Diggin", show: false },
-      ],
+      component: "form-one",
     };
   },
   methods: {
-    ubah: function (update) {
-      // update itu sama dengan $event
-      this.title = update;
+    handleSubmit: function () {
+      alert("thanks for submitting");
     },
   },
 };
 </script>
 
-
-maksud dari scoped adalah kita menscoped stylenya hanya di sini saja
-<style scoped>
-h1 {
-  color: red;
+<style>
+body {
+  margin: 0;
+  font-family: "Nunito SemiBold";
 }
 </style>
