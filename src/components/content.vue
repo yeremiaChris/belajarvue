@@ -51,6 +51,13 @@
           value="javascript"
           v-model="data.bahasa"
         />
+        <br />
+        <label for="framework">Framework yang dikuasai</label>
+        <select v-model="data.framework">
+          <option v-bind:key="data" v-for="data in framework">{{
+            data
+          }}</option>
+        </select>
 
         <div class="preview mb-3">
           <h3>Preview :</h3>
@@ -61,6 +68,10 @@
           <ul>
             <li v-bind:key="bhs" v-for="bhs in data.bahasa">{{ bhs }}</li>
           </ul>
+          <div>
+            <p>Framework yang di kuasai :</p>
+            <p>{{ data.framework }}</p>
+          </div>
         </div>
         <b-button type="submit" variant="primary">Submit</b-button>
         <b-button type="reset" variant="danger">Reset</b-button>
@@ -77,8 +88,10 @@ export default {
         nama: "",
         jurusan: "",
         nim: "",
-        bahasa: []
-      }
+        bahasa: [],
+        framework: ""
+      },
+      framework: ["React", "Vue", "Angular", "Django", "CI", "Laravel"]
     };
   },
   methods: {}
