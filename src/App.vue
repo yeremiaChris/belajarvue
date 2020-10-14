@@ -1,41 +1,45 @@
-
 <template>
   <div>
-    <!-- berfungsi untuk menjaga agar tetap aktif formnya jadi data yang kita
-    tulis dan ketika kita pindah form datanya masih ada -->
-    <keep-alive>
-      <component v-bind:is="component"></component>
-    </keep-alive>
-    <button v-on:click="component = 'form-one'">Show form one</button>
-    <button v-on:click="component = 'form-two'">Show form two</button>
+    <nav-bar></nav-bar>
+    <app-content></app-content>
   </div>
 </template>
 
 <script>
 // Imports
-import formOne from "./components/formOne.vue";
-import formTwo from "./components/formTwo.vue";
+import addBlog from "./components/addBlog";
+import Vue from "vue";
+import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap-vue/dist/bootstrap-vue.css";
+import navBar from "./components/navBar";
+import content from "./components/content";
+
+// Install BootstrapVue
+Vue.use(BootstrapVue);
+// Optionally install the BootstrapVue icon components plugin
+Vue.use(IconsPlugin);
 export default {
   components: {
-    "form-one": formOne,
-    "form-two": formTwo,
+    "app-addblog": addBlog,
+    "nav-bar": navBar,
+    "app-content": content
   },
   data() {
-    return {
-      component: "form-one",
-    };
+    return {};
   },
-  methods: {
-    handleSubmit: function () {
-      alert("thanks for submitting");
-    },
-  },
+  methods: {}
 };
 </script>
 
 <style>
 body {
   margin: 0;
-  font-family: "Nunito SemiBold";
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+.preview {
+  border: 1px solid rgb(207, 204, 204);
+  padding: 10px 20px;
+  box-shadow: 2px 2px rgba(0, 0, 0, 0.2);
 }
 </style>
