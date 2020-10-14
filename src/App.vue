@@ -8,17 +8,9 @@
 <script>
 // Imports
 import addBlog from "./components/addBlog";
-import Vue from "vue";
-import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
-import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap-vue/dist/bootstrap-vue.css";
 import navBar from "./components/navBar";
 import content from "./components/content";
 
-// Install BootstrapVue
-Vue.use(BootstrapVue);
-// Optionally install the BootstrapVue icon components plugin
-Vue.use(IconsPlugin);
 export default {
   components: {
     "app-addblog": addBlog,

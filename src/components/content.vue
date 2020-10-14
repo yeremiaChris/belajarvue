@@ -2,7 +2,7 @@
   <div>
     <b-container class="mt-3">
       <h1>Tambah Mahasiswa</h1>
-      <b-form>
+      <b-form v-if="!submitted">
         <b-form-group id="input-group-1" label="Nama:" label-for="input-1">
           <b-input
             id="input-1"
@@ -58,24 +58,26 @@
             data
           }}</option>
         </select>
-
-        <div class="preview mb-3">
-          <h3>Preview :</h3>
-          <p>Nama : {{ data.nama }}</p>
-          <p>Jurusan : {{ data.jurusan }}</p>
-          <p>NIM : {{ data.nim }}</p>
-          <p>Bahasa Pemrograman</p>
-          <ul>
-            <li v-bind:key="bhs" v-for="bhs in data.bahasa">{{ bhs }}</li>
-          </ul>
-          <div>
-            <p>Framework yang di kuasai :</p>
-            <p>{{ data.framework }}</p>
-          </div>
-        </div>
-        <b-button type="submit" variant="primary">Submit</b-button>
-        <b-button type="reset" variant="danger">Reset</b-button>
       </b-form>
+      <div v-if="submitted">
+        <p>Terima kasih data di diterima</p>
+      </div>
+      <div class="preview mb-3">
+        <h3>Preview :</h3>
+        <p>Nama : {{ data.nama }}</p>
+        <p>Jurusan : {{ data.jurusan }}</p>
+        <p>NIM : {{ data.nim }}</p>
+        <p>Bahasa Pemrograman</p>
+        <ul>
+          <li v-bind:key="bhs" v-for="bhs in data.bahasa">{{ bhs }}</li>
+        </ul>
+        <div>
+          <p>Framework yang di kuasai :</p>
+          <p>{{ data.framework }}</p>
+        </div>
+      </div>
+      <b-button v-on:click.prevent="post" variant="primary">Submit</b-button>
+      <b-button type="reset" variant="danger">Reset</b-button>
     </b-container>
   </div>
 </template>
@@ -91,10 +93,24 @@ export default {
         bahasa: [],
         framework: ""
       },
-      framework: ["React", "Vue", "Angular", "Django", "CI", "Laravel"]
+      framework: ["React", "Vue", "Angular", "Django", "CI", "Laravel"],
+      submitted: false
     };
   },
-  methods: {}
+  methods: {
+    post: function() {
+      this.$http
+        .post("https://jsonplaceholder.typicode.com/posts", {
+          title: this.data.nama,
+          body: this.data.jurusan,
+          userId: 1
+        })
+        .then(function(data) {
+          this.submitted = true;
+          console.log(data);
+        });
+    }
+  }
 };
 </script>
 
