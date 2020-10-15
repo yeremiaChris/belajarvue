@@ -100,14 +100,10 @@ export default {
   methods: {
     post: function() {
       this.$http
-        .post("https://jsonplaceholder.typicode.com/posts", {
-          title: this.data.nama,
-          body: this.data.jurusan,
-          userId: 1
-        })
-        .then(function(data) {
+        .post("https://blogapp-9c239.firebaseio.com/posts.json", this.data)
+        .then(function(da) {
+          console.log(da);
           this.submitted = true;
-          console.log(data);
         });
     }
   }
