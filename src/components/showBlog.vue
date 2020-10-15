@@ -4,7 +4,9 @@
       <h1>Daftar Semua Blogs</h1>
       <input type="text" placeholder="search" v-model="search" />
       <div v-bind:key="blog" v-for="blog in filterBlogs" class="blogs">
-        <h3 v-rainbow>title : {{ blog.title | toUppercase }}</h3>
+        <router-link v-bind:to="'/blog/' + blog.id">
+          <h3>title : {{ blog.title | toUppercase }}</h3>
+        </router-link>
         <h3>userId : {{ blog.userId }}</h3>
         <h3>body : {{ blog.body | snipet }}</h3>
       </div>
@@ -55,7 +57,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .blogs {
   border: 1px solid black;
   margin: 20px 0;
