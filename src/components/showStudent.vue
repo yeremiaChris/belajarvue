@@ -1,11 +1,12 @@
 <template>
   <div>
-    <b-container class="bv-example-row" v-theme:column>
+    <b-container class="bv-example-row">
       <h1>Daftar Semua Blogs</h1>
-      <div v-bind:key="blog" v-for="blog in blogs" class="blogs">
-        <h3 v-rainbow>title : {{ blog.title }}</h3>
+      <input type="text" placeholder="search" v-model="search" />
+      <div v-bind:key="blog" v-for="blog in filterBlogs" class="blogs">
+        <h3>title : {{ blog.title | uppercase }}</h3>
         <h3>userId : {{ blog.userId }}</h3>
-        <h3>body : {{ blog.body }}</h3>
+        <h3>body : {{ blog.body | snipet }}</h3>
       </div>
     </b-container>
   </div>
@@ -16,7 +17,8 @@
 export default {
   data() {
     return {
-      blogs: []
+      blogs: [],
+      search: ""
     };
   },
   methods: {},
@@ -28,6 +30,15 @@ export default {
         this.blogs = data.body.slice(0, 10);
         console.log(data);
       });
+  },
+  computed: {
+    filterBlogs: function() {
+      return this.blogs.filter(blog => {
+        //   yang di retrun di bawah ini adalah boolean yang dalamanya ada arary
+        // jadi kaloa match biarkan di array kalo tidak, di array nya juga nggak
+        return blog.title.match(this.search);
+      });
+    }
   }
 };
 </script>
