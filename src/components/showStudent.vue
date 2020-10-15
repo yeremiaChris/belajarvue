@@ -4,7 +4,7 @@
       <h1>Daftar Semua Blogs</h1>
       <input type="text" placeholder="search" v-model="search" />
       <div v-bind:key="blog" v-for="blog in filterBlogs" class="blogs">
-        <h3>title : {{ blog.title | uppercase }}</h3>
+        <h3 v-rainbow>title : {{ blog.title | toUppercase }}</h3>
         <h3>userId : {{ blog.userId }}</h3>
         <h3>body : {{ blog.body | snipet }}</h3>
       </div>
@@ -38,6 +38,25 @@ export default {
         // jadi kaloa match biarkan di array kalo tidak, di array nya juga nggak
         return blog.title.match(this.search);
       });
+    }
+  },
+  filters: {
+    toUppercase(value) {
+      return value.toUpperCase();
+    },
+    snipet(value) {
+      return value.slice(0, 100);
+    }
+  },
+  directives: {
+    rainbow: {
+      bind(el, binding, vnode) {
+        el.style.color =
+          "#" +
+          Math.random()
+            .toString()
+            .slice(2, 8);
+      }
     }
   }
 };

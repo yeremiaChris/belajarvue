@@ -19,14 +19,14 @@ Vue.use(VueResource);
 
 export const bus = new Vue();
 
-// filter
-Vue.filter("uppercase", function(value) {
-  return value.toUpperCase();
-});
+// filter globally
+// Vue.filter("uppercase", function(value) {
+//   return value.toUpperCase();
+// });
 
-Vue.filter("snipet", function(value) {
-  return value.slice(0, 100);
-});
+// Vue.filter("snipet", function(value) {
+//   return value.slice(0, 100);
+// });
 
 new Vue({
   el: "#app",
