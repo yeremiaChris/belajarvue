@@ -1,9 +1,9 @@
 <template>
   <div>
-    <b-container class="bv-example-row">
+    <b-container class="bv-example-row" v-theme:column>
       <h1>Daftar Semua Blogs</h1>
       <div v-bind:key="blog" v-for="blog in blogs" class="blogs">
-        <h3>title : {{ blog.title }}</h3>
+        <h3 v-rainbow>title : {{ blog.title }}</h3>
         <h3>userId : {{ blog.userId }}</h3>
         <h3>body : {{ blog.body }}</h3>
       </div>

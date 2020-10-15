@@ -19,6 +19,29 @@ Vue.use(VueResource);
 
 export const bus = new Vue();
 
+// custom directive
+Vue.directive("rainbow", {
+  bind(el, binding, vnode) {
+    el.style.color =
+      "#" +
+      Math.random()
+        .toString()
+        .slice(2, 8);
+  }
+});
+
+Vue.directive("theme", {
+  bind(el, binding, vnode) {
+    // if (binding.value == `wide`) {
+    //   el.style.maxWidth = "1200px";
+    // }
+    if (binding.arg == "column") {
+      el.style.background = "#ddd";
+      el.style.padding = "20px";
+    }
+  }
+});
+
 new Vue({
   el: "#app",
   render: h => h(App)
