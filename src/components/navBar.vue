@@ -7,9 +7,11 @@
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
         <b-collapse id="nav-collapse" is-nav>
+          <b-navbar-nav class="mr-3">
+            <router-link to="/" exact class="link">Blog</router-link>
+          </b-navbar-nav>
           <b-navbar-nav>
-            <b-nav-item href="#">Link</b-nav-item>
-            <b-nav-item href="#" disabled>Disabled</b-nav-item>
+            <router-link to="/add" exact class="link">Tambah</router-link>
           </b-navbar-nav>
 
           <!-- Right aligned nav items -->
@@ -63,4 +65,13 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.link {
+  color: white;
+}
+.router-link-active {
+  background-color: black;
+  padding: 10px;
+  border-radius: 30px;
+}
+</style>
