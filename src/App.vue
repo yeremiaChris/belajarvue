@@ -1,7 +1,7 @@
 <template>
   <div>
     <nav-bar></nav-bar>
-    <app-content></app-content>
+    <app-showStudent></app-showStudent>
   </div>
 </template>
 
@@ -10,12 +10,14 @@
 import addBlog from "./components/addBlog";
 import navBar from "./components/navBar";
 import content from "./components/content";
+import showStudent from "./components/showStudent";
 
 export default {
   components: {
     "app-addblog": addBlog,
     "nav-bar": navBar,
-    "app-content": content
+    "app-content": content,
+    "app-showStudent": showStudent
   },
   data() {
     return {};
