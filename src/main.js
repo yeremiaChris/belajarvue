@@ -26,9 +26,19 @@ export const bus = new Vue();
 
 // Vue.filter("snipet", function(value) {
 //   return value.slice(0, 100);
-// });
+// });\
+
+// router
+import VueRouter from "vue-router";
+import Routers from "./routes";
+Vue.use(VueRouter);
+
+const router = new VueRouter({
+  routes: Routers
+});
 
 new Vue({
   el: "#app",
-  render: h => h(App)
+  render: h => h(App),
+  router: router
 });

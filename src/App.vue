@@ -1,8 +1,7 @@
 <template>
   <div>
     <nav-bar></nav-bar>
-    <app-showStudent></app-showStudent>
-    <app-showBlog></app-showBlog>
+    <router-view></router-view>
   </div>
 </template>
 
