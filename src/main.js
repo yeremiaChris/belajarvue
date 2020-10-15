@@ -34,7 +34,8 @@ import Routers from "./routes";
 Vue.use(VueRouter);
 
 const router = new VueRouter({
-  routes: Routers
+  routes: Routers,
+  mode: "history"
 });
 
 new Vue({
